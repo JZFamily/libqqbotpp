@@ -87,3 +87,8 @@ string GBKToUTF8(string GBKString)
     delete[] utf8str;
     return s;
 }
+
+void OpenQRCode()
+{
+    ShellExecute(NULL,"open","qrcode.png",NULL,NULL,SW_SHOWMAXIMIZED);
+}

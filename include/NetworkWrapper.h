@@ -62,6 +62,7 @@ public:
     int setOrigin(const std::string& origin);
     int setPostData(const void* data,int sz);
     int setPostData(const std::string& data);
+    int setFollowLocation(bool enable);/// disabled by default
 
     enum class Method
     {

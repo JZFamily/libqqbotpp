@@ -314,6 +314,11 @@ int HTTPConnection::setPostData(const std::string& data)
     return setPostData(data.c_str(),data.size());
 }
 
+int HTTPConnection::setFollowLocation(bool enable)
+{
+    return invokeLib(curl_easy_setopt,_p->c,CURLOPT_FOLLOWLOCATION,enable?1:0);
+}
+
 int HTTPConnection::setMethod(Method m)
 {
     switch(m)

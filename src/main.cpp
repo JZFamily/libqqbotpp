@@ -9,6 +9,7 @@ using namespace nlohmann;
 void Delay(int second);
 string UTF8ToGBK(string UTF8String);
 string GBKToUTF8(string GBKString);
+void OpenQRCode();
 
 const string USERAGENT="Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36";
 
@@ -17,7 +18,6 @@ string qrsig;
 int GetQRCode()
 {
     HTTPConnection t;
-    t.setVerbos(true);
     t.setUserAgent(USERAGENT);
     t.setURL("https://ssl.ptlogin2.qq.com/ptqrshow?appid=501004106&e=0&l=M&s=5&d=72&v=4&t=0.1");
     t.setDataOutputFile("qrcode.png");
@@ -31,6 +31,9 @@ int GetQRCode()
             qrsig=c.value;
         }
     }
+
+    OpenQRCode();
+    printf("二维码已打开. 请使用手机扫描二维码进行登录.\n");
 
     return 0;
 }
@@ -175,7 +178,8 @@ int GetVfWebQQ()
 
     printf("VfWebQQBuff: %s\n",buff);
 
-    json j(buff);
+    /// 修复exception
+    json j=json::parse(buff);
     vfwebqq=j["vfwebqq"];
 
     return 0;
@@ -200,6 +204,11 @@ int GetUinPsessionid()
 
     return 0;
 }
+
+class Client
+{
+
+};
 
 int main()
 {
