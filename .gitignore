@@ -1,0 +1,12 @@
+/bin/
+/obj/
+
+*.cbp
+*.depend
+*.layout
+
+/*.dll
+/*.exe
+
+/*.txt
+/*.png
